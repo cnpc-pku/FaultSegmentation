@@ -63,7 +63,7 @@ def ModelGenerator(N,Indexrange,seis_path,labels_path):
         c = random.sample(range(1, (N - 10)), M)
 
         for i in range(M):
-            a[c[i]:c[i] + b[i]] = 0
+            a[c[i]:c[i] + b[i]] = 0   #sparse ref coefficient
         x = np.linspace(0, 2 * np.pi, N + 1)
         Amprange = np.array([0, 5, 10, 15, 20, 25, 30])
         Amp = np.random.choice(Amprange, 1)
@@ -92,7 +92,7 @@ def ModelGenerator(N,Indexrange,seis_path,labels_path):
 
         # fault
 
-        krange = [i for i in range(-89, 91)]
+        krange = [i for i in range(-89, 91)]   #generate slop(dip of fault)
         krange = np.array(krange)
 
         def f(x, N):
@@ -157,7 +157,7 @@ def ModelGenerator(N,Indexrange,seis_path,labels_path):
 
         # fault_aug
         m26 = m10
-        drange = np.array([[0, 5], [2, 4], [3, 0]])
+        drange = np.array([[0, 5], [2, 4], [3, 0]])   #generate 1,3 or 5 trace fault
         d = random.choice(drange)
 
         if k >= 0:
@@ -196,7 +196,7 @@ def ModelGenerator(N,Indexrange,seis_path,labels_path):
         # convolve
 
         #from scipy import signal
-        rrange = np.linspace(0.5, 3, 6)
+        rrange = np.linspace(0.5, 3, 6)    #random choose wavelet
         rc = np.random.choice(rrange)
         r = signal.ricker(100, rc)
         '''
